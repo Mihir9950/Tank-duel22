@@ -1,0 +1,13 @@
+{
+  "name": "tank-duel",
+  "version": "1.0.0",
+  "description": "Online 2D turn-based artillery duel (Tank Stars style)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

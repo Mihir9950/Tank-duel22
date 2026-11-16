@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Tank Duel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud" class="hidden">
+    <div class="pcard" id="p0">
+      <div class="pname" id="p0name"></div>
+      <div class="bar"><i id="p0bar"></i></div>
+      <div class="php" id="p0hp"></div>
+    </div>
+    <div id="center">
+      <button id="leaveBtn" class="icon" title="Leave match">✕</button>
+      <div id="timerBox"><div id="timer">--</div><div id="wind"></div></div>
+      <button id="muteBtn" class="icon" title="Sound">🔊</button>
+    </div>
+    <div class="pcard right" id="p1">
+      <div class="pname" id="p1name"></div>
+      <div class="bar"><i id="p1bar"></i></div>
+      <div class="php" id="p1hp"></div>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="c"></canvas>
+    <div id="toast"></div>
+  </main>
+
+  <footer id="controls" class="hidden">
+    <div class="grp">
+      <label>MOVE <small id="fuelTxt"></small></label>
+      <div class="row">
+        <button class="hold" data-hold="left">◀</button>
+        <button class="hold" data-hold="right">▶</button>
+      </div>
+      <div class="meter"><i id="fuelBar"></i></div>
+    </div>
+    <div class="grp">
+      <label>ANGLE <b id="angTxt">45°</b></label>
+      <div class="row">
+        <button class="hold" data-hold="angup">⟲</button>
+        <button class="hold" data-hold="angdown">⟳</button>
+      </div>
+    </div>
+    <div class="grp">
+      <label>POWER <b id="powTxt">60</b></label>
+      <div class="row">
+        <button class="hold" data-hold="powdown">−</button>
+        <button class="hold" data-hold="powup">+</button>
+      </div>
+      <div class="meter"><i id="powBar"></i></div>
+    </div>
+    <div class="grp weapons" id="weapons"></div>
+    <button id="fireBtn">FIRE</button>
+  </footer>
+</div>
+
+<!-- Lobby -->
+<div id="lobby" class="overlay">
+  <div class="card">
+    <h1>TANK<span>DUEL</span></h1>
+    <p class="sub">Online artillery for two. Dig craters, read the wind, win.</p>
+    <input id="nameInput" maxlength="14" placeholder="Your name" autocomplete="off">
+    <div id="serverRow" class="hidden">
+      <input id="serverInput" placeholder="Server, e.g. my-tank-duel.onrender.com" autocomplete="off" spellcheck="false">
+    </div>
+    <button id="quickBtn" class="primary">⚡ Quick Match</button>
+    <div class="or">or play a friend</div>
+    <div class="split">
+      <button id="createBtn">Create room</button>
+      <div class="joinbox">
+        <input id="codeInput" maxlength="4" placeholder="CODE" autocomplete="off">
+        <button id="joinBtn">Join</button>
+      </div>
+    </div>
+    <p id="lobbyErr" class="err"></p>
+    <details>
+      <summary>How to play</summary>
+      <ul class="help">
+        <li><b>Aim:</b> drag on the battlefield, or ← → angle, ↑ ↓ power (hold Shift for fine tuning)</li>
+        <li><b>Move:</b> A / D (limited fuel each turn)</li>
+        <li><b>Weapons:</b> 1–4 &nbsp; <b>Fire:</b> Space</li>
+        <li>Watch the wind arrow. Big blasts dig craters and drop tanks, and falls hurt.</li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<!-- Waiting -->
+<div id="waiting" class="overlay hidden">
+  <div class="card">
+    <h2 id="waitMsg">Waiting…</h2>
+    <div id="codeBox" class="hidden">
+      <div class="codelabel">Room code</div>
+      <div id="roomCode">----</div>
+      <button id="copyBtn">Copy invite link</button>
+    </div>
+    <div class="spinner"></div>
+    <button id="cancelBtn">Cancel</button>
+  </div>
+</div>
+
+<!-- End -->
+<div id="end" class="overlay hidden">
+  <div class="card">
+    <h2 id="endTitle"></h2>
+    <p id="endSub" class="sub"></p>
+    <button id="rematchBtn" class="primary">Rematch</button>
+    <button id="menuBtn">Main menu</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="game.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
